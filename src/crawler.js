@@ -1,11 +1,15 @@
+//Import Packages
 const got = require('got');
 const jsdom = require("jsdom");
+//JSDOM was chosen over other, more abstracted automation toolkits. As the project did not require emulation of human action
+//A library like Selenium or Puppeteer would have been overkill
 const {JSDOM} = jsdom;
 var fs = require("fs");
 
 arr = []
 const timesUrls = ['https://time.com/section/sports/', 'https://time.com/section/tech/', 'https://time.com/section/business/']
 
+//Simple function to scrape an array of given websites. The selectors would, of course only work on one structured exactly NYtimes pages here are.
 async function timesCrawler(urls, arr) {
     if (!fs.existsSync('times.json')) {
         for (x of urls) {
